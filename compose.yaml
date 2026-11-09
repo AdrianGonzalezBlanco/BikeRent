@@ -12,6 +12,9 @@ services:
         depends_on:
             - mysql
     laravel.test:
+        dns:
+            - 8.8.8.8
+            - 1.1.1.1
         build:
             context: './vendor/laravel/sail/runtimes/8.5'
             dockerfile: Dockerfile
