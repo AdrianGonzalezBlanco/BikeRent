@@ -1,48 +1,27 @@
-<section>
-    <header>
-        <h2 class="">
-            {{ __('Update Password') }}
-        </h2>
+<header>
+    <h2 id="profile-password-title" class="panel__title">Contraseña</h2>
+    <p class="panel__text">Usa una contraseña larga y difícil de adivinar.</p>
+</header>
 
-        <p class="">
-            {{ __('Ensure your account is using a long, random password to stay secure.') }}
-        </p>
-    </header>
+<form method="POST" action="{{ route('password.update') }}" class="form">
+    @csrf
+    @method('put')
 
-    <form method="post" action="{{ route('password.update') }}" class="">
-        @csrf
-        @method('put')
+    <x-field name="current_password" id="update_password_current_password" bag="updatePassword" label="Contraseña actual" type="password" autocomplete="current-password" />
+    <x-field name="password" id="update_password_password" bag="updatePassword" label="Contraseña nueva" type="password" autocomplete="new-password" />
+    <x-field name="password_confirmation" id="update_password_password_confirmation" bag="updatePassword" label="Repetir contraseña nueva" type="password" autocomplete="new-password" />
 
-        <div>
-            <x-input-label for="update_password_current_password" :value="__('Current Password')" />
-            <x-text-input id="update_password_current_password" name="current_password" type="password" class="" />
-            <x-input-error :messages="$errors->updatePassword->get('current_password')" class="" />
-        </div>
+    <div class="form__actions">
+        <x-button type="submit">Guardar</x-button>
 
-        <div>
-            <x-input-label for="update_password_password" :value="__('New Password')" />
-            <x-text-input id="update_password_password" name="password" type="password" class="" />
-            <x-input-error :messages="$errors->updatePassword->get('password')" class="" />
-        </div>
-
-        <div>
-            <x-input-label for="update_password_password_confirmation" :value="__('Confirm Password')" />
-            <x-text-input id="update_password_password_confirmation" name="password_confirmation" type="password" class="" />
-            <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="" />
-        </div>
-
-        <div class="">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
-
-            @if (session('status') === 'password-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class=""
-                >{{ __('Saved.') }}</p>
-            @endif
-        </div>
-    </form>
-</section>
+        @if (session('status') === 'password-updated')
+            <p
+                role="status"
+                class="form__saved"
+                x-data="{ show: true }"
+                x-show="show"
+                x-init="setTimeout(() => show = false, 3000)"
+            >Contraseña actualizada.</p>
+        @endif
+    </div>
+</form>

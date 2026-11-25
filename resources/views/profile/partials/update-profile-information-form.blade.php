@@ -1,64 +1,41 @@
-<section>
-    <header>
-        <h2 class="">
-            {{ __('Profile Information') }}
-        </h2>
+<header>
+    <h2 id="profile-info-title" class="panel__title">Datos personales</h2>
+    <p class="panel__text">Actualiza tu nombre y tu correo electrónico.</p>
+</header>
 
-        <p class="">
-            {{ __("Update your account's profile information and email address.") }}
-        </p>
-    </header>
+<form id="send-verification" method="POST" action="{{ route('verification.send') }}">
+    @csrf
+</form>
 
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
-        @csrf
-    </form>
+<form method="POST" action="{{ route('profile.update') }}" class="form">
+    @csrf
+    @method('patch')
 
-    <form method="post" action="{{ route('profile.update') }}" class="">
-        @csrf
-        @method('patch')
+    <x-field name="name" label="Nombre" :value="$user->name" required autofocus autocomplete="name" />
+    <x-field name="email" label="Correo electrónico" type="email" :value="$user->email" required autocomplete="username" />
 
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="" />
-            <x-input-error class="" />
+    @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
+        <div class="alert alert--error" role="status">
+            <p>Tu correo no está verificado.</p>
+            <button type="submit" form="send-verification" class="link-button">Reenviar correo de verificación</button>
         </div>
 
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="" />
-            <x-input-error class="" />
+        @if (session('status') === 'verification-link-sent')
+            <p role="status" class="alert alert--success">Te hemos enviado un nuevo enlace de verificación.</p>
+        @endif
+    @endif
 
-            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <div>
-                    <p class="">
-                        {{ __('Your email address is unverified.') }}
+    <div class="form__actions">
+        <x-button type="submit">Guardar</x-button>
 
-                        <button form="send-verification" class="">
-                            {{ __('Click here to re-send the verification email.') }}
-                        </button>
-                    </p>
-
-                    @if (session('status') === 'verification-link-sent')
-                        <p class="">
-                            {{ __('A new verification link has been sent to your email address.') }}
-                        </p>
-                    @endif
-                </div>
-            @endif
-        </div>
-
-        <div class="">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
-
-            @if (session('status') === 'profile-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class=""
-                >{{ __('Saved.') }}</p>
-            @endif
-        </div>
-    </form>
-</section>
+        @if (session('status') === 'profile-updated')
+            <p
+                role="status"
+                class="form__saved"
+                x-data="{ show: true }"
+                x-show="show"
+                x-init="setTimeout(() => show = false, 3000)"
+            >Cambios guardados.</p>
+        @endif
+    </div>
+</form>

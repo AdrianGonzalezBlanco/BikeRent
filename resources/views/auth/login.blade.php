@@ -1,42 +1,24 @@
-<x-guest-layout>
-    <!-- Session Status -->
+<x-guest-layout title="Iniciar sesión">
+    <x-page-header title="Iniciar sesión" subtitle="Accede para reservar tu bicicleta" />
+
     <x-auth-session-status :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}" class="form">
         @csrf
 
-        <!-- Email Address -->
-        <div class="field">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" />
-        </div>
+        <x-field name="email" label="Correo electrónico" type="email" required autofocus autocomplete="username" />
+        <x-field name="password" label="Contraseña" type="password" required autocomplete="current-password" />
 
-        <!-- Password -->
-        <div class="field">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" type="password" name="password" required autocomplete="current-password" />
-            <x-input-error :messages="$errors->get('password')" />
-        </div>
+        <label class="check">
+            <input id="remember_me" type="checkbox" name="remember">
+            <span>Recordarme</span>
+        </label>
 
-        <!-- Remember Me -->
-        <div>
-            <label for="remember_me">
-                <input id="remember_me" type="checkbox" name="remember">
-                <span>{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div>
-            @if (Route::has('password.request'))
-                <x-button variant="text" :href="route('password.request')">
-                    {{ __('Forgot your password?') }}
-                </x-button>
-            @endif
-
-            <x-button type="submit">
-                {{ __('Log in') }}
-            </x-button>
+        <div class="form__actions">
+            <x-button type="submit" class="btn--block">Entrar</x-button>
+            <x-button variant="text" :href="route('password.request')" class="btn--block">¿Has olvidado tu contraseña?</x-button>
         </div>
     </form>
+
+    <p class="guest__switch">¿No tienes cuenta? <a href="{{ route('register') }}">Regístrate</a></p>
 </x-guest-layout>
