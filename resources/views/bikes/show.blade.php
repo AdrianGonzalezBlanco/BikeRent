@@ -5,8 +5,8 @@
         </x-button>
     </div>
 
-    <article class="bike-detail">
-        <x-bike-image :bike="$bike" class="bike-detail__image" />
+    <article class="bike-detail split">
+        <x-bike-image :bike="$bike" class="bike-image--rounded" />
 
         <div class="bike-detail__info">
             <x-status-badge :status="$bike->status" />

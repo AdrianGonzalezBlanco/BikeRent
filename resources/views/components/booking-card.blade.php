@@ -2,7 +2,9 @@
 
 <article {{ $attributes->class(['booking-card']) }}>
     <header class="booking-card__header">
-        <h2 class="booking-card__model">{{ $booking->bike->model }}</h2>
+        <h2 class="booking-card__model">
+            <a href="{{ route('bookings.show', $booking) }}" class="booking-card__link">{{ $booking->bike->model }}</a>
+        </h2>
         <x-status-badge :status="$booking->status" />
     </header>
 

@@ -28,3 +28,9 @@
   .booking-form__summary { grid-area: summary; }
   .booking-form__actions { grid-area: actions; }
 }
+
+/* Detalle de una reserva: resumen y acciones (la rejilla es .split) */
+.booking-detail__info {
+  display: grid;
+  gap: var(--space-md);
+}

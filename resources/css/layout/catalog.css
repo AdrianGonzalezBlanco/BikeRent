@@ -1,11 +1,4 @@
-/* Detalle de bicicleta: apilado en móvil, dos columnas en escritorio */
-.bike-detail {
-  display: grid;
-  gap: var(--space-lg);
-}
-
-.bike-detail__image { border-radius: var(--radius-lg); }
-
+/* Detalle de bicicleta: la rejilla de dos columnas es .split (page.css) */
 .bike-detail__info {
   display: flex;
   flex-direction: column;
@@ -20,12 +13,4 @@
   line-height: 2.25rem;
   font-weight: 600;
   color: var(--md-sys-color-primary);
-}
-
-@media (min-width: 48rem) {
-  .bike-detail {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: start;
-    gap: var(--space-xl);
-  }
 }
