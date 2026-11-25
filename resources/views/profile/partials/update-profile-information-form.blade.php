@@ -29,13 +29,7 @@
         <x-button type="submit">Guardar</x-button>
 
         @if (session('status') === 'profile-updated')
-            <p
-                role="status"
-                class="form__saved"
-                x-data="{ show: true }"
-                x-show="show"
-                x-init="setTimeout(() => show = false, 3000)"
-            >Cambios guardados.</p>
+            <p role="status" class="form__saved">Cambios guardados.</p>
         @endif
     </div>
 </form>

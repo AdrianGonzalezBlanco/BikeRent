@@ -1,4 +1,22 @@
 // Validación en el navegador del formulario de reserva (la definitiva la hace el servidor)
+
+// Añade o quita el id del mensaje en aria-describedby sin tocar los demás
+const setDescribedBy = (input, id, add) => {
+    const ids = new Set((input.getAttribute('aria-describedby') ?? '').split(' ').filter(Boolean));
+
+    if (add) {
+        ids.add(id);
+    } else {
+        ids.delete(id);
+    }
+
+    if (ids.size > 0) {
+        input.setAttribute('aria-describedby', [...ids].join(' '));
+    } else {
+        input.removeAttribute('aria-describedby');
+    }
+};
+
 const showError = (input, message) => {
     const zone = document.getElementById(`${input.id}-client-error`);
 
@@ -17,34 +35,23 @@ const clearError = (input) => {
     setDescribedBy(input, zone.id, false);
 };
 
-// Añade o quita el id del mensaje en aria-describedby sin tocar los demás
-const setDescribedBy = (input, id, add) => {
-    const ids = new Set((input.getAttribute('aria-describedby') ?? '').split(' ').filter(Boolean));
-
-    add ? ids.add(id) : ids.delete(id);
-
-    if (ids.size) {
-        input.setAttribute('aria-describedby', [...ids].join(' '));
-    } else {
-        input.removeAttribute('aria-describedby');
-    }
-};
-
 // Devuelve los errores encontrados como { input, message }
 const validate = (startInput, endInput) => {
     const errors = [];
     const start = new Date(startInput.value);
     const end = new Date(endInput.value);
+    const startIsValid = startInput.value !== '' && !Number.isNaN(start.getTime());
+    const endIsValid = endInput.value !== '' && !Number.isNaN(end.getTime());
 
-    if (startInput.value === '' || Number.isNaN(start.getTime())) {
+    if (!startIsValid) {
         errors.push({ input: startInput, message: 'Indica la fecha y hora de inicio.' });
     } else if (start < new Date()) {
         errors.push({ input: startInput, message: 'El inicio no puede ser anterior a ahora.' });
     }
 
-    if (endInput.value === '' || Number.isNaN(end.getTime())) {
+    if (!endIsValid) {
         errors.push({ input: endInput, message: 'Indica la fecha y hora de fin.' });
-    } else if (end <= start) {
+    } else if (startIsValid && end <= start) {
         errors.push({ input: endInput, message: 'El fin debe ser posterior al inicio.' });
     }
 
@@ -58,8 +65,7 @@ export function initBookingValidation() {
         return;
     }
 
-    const startInput = form.elements.start_time;
-    const endInput = form.elements.end_time;
+    const { start_time: startInput, end_time: endInput } = form.elements;
 
     form.addEventListener('submit', (event) => {
         [startInput, endInput].forEach(clearError);

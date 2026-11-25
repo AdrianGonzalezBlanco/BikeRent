@@ -6,12 +6,11 @@
 <div>
     <x-button
         variant="danger"
-        x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
+        data-modal-open="confirm-user-deletion"
     >Eliminar cuenta</x-button>
 </div>
 
-<x-modal name="confirm-user-deletion" labelledby="delete-modal-title" :show="$errors->userDeletion->isNotEmpty()" focusable>
+<x-modal name="confirm-user-deletion" labelledby="delete-modal-title" :show="$errors->userDeletion->isNotEmpty()">
     <form method="POST" action="{{ route('profile.destroy') }}" class="form">
         @csrf
         @method('delete')
@@ -24,7 +23,7 @@
         <x-field name="password" id="delete_password" bag="userDeletion" label="Contraseña" type="password" autocomplete="current-password" />
 
         <div class="form__actions form__actions--row">
-            <x-button variant="outlined" x-on:click="$dispatch('close')">Cancelar</x-button>
+            <x-button variant="outlined" data-modal-close>Cancelar</x-button>
             <x-button type="submit" variant="danger">Eliminar cuenta</x-button>
         </div>
     </form>

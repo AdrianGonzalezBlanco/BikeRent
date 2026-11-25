@@ -15,13 +15,7 @@
         <x-button type="submit">Guardar</x-button>
 
         @if (session('status') === 'password-updated')
-            <p
-                role="status"
-                class="form__saved"
-                x-data="{ show: true }"
-                x-show="show"
-                x-init="setTimeout(() => show = false, 3000)"
-            >Contraseña actualizada.</p>
+            <p role="status" class="form__saved">Contraseña actualizada.</p>
         @endif
     </div>
 </form>
