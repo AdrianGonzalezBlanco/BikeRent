@@ -15,7 +15,8 @@ class Bike extends Model
         'serial_number',
         'model',
         'price_per_hour',
-        'status'
+        'status',
+        'image',
     ];
     
     public function bookings(): HasMany
