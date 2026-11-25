@@ -10,7 +10,7 @@
 .chip {
   display: inline-flex;
   align-items: center;
-  min-height: 2.5rem;
+  min-height: 2.75rem;
   padding: 0 var(--space-md);
   border: 1px solid var(--md-sys-color-outline);
   border-radius: var(--radius-sm);

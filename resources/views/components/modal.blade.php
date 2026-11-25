@@ -7,6 +7,7 @@
 <div
     x-data="{
         show: @js($show),
+        previous: null,
         focusables() {
             // All focusable element types...
             let selector = 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
@@ -23,10 +24,12 @@
     }"
     x-init="$watch('show', value => {
         if (value) {
+            previous = document.activeElement;
             document.body.classList.add('is-modal-open');
             {{ $attributes->has('focusable') ? 'setTimeout(() => firstFocusable().focus(), 100)' : '' }}
         } else {
             document.body.classList.remove('is-modal-open');
+            previous?.focus();
         }
     })"
     x-on:open-modal.window="$event.detail == '{{ $name }}' ? show = true : null"

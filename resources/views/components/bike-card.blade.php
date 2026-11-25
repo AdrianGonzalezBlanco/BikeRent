@@ -1,7 +1,7 @@
 @props(['bike'])
 
 <article {{ $attributes->class(['bike-card']) }}>
-    <x-bike-image :bike="$bike" />
+    <x-bike-image :bike="$bike" decorative />
 
     <div class="bike-card__body">
         <x-status-badge :status="$bike->status" />
