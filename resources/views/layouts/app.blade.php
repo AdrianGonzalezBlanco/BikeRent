@@ -7,7 +7,7 @@
         </header>
     @endisset
 
-    <main id="main">
+    <main id="main" class="container">
         {{ $slot }}
     </main>
 </x-layout.base>
