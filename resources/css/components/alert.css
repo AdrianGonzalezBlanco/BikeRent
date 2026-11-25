@@ -1,0 +1,14 @@
+.alert {
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+}
+
+.alert--success {
+  color: var(--md-sys-color-on-primary-container);
+  background: var(--md-sys-color-primary-container);
+}
+
+.alert--error {
+  color: var(--md-sys-color-on-error-container);
+  background: var(--md-sys-color-error-container);
+}

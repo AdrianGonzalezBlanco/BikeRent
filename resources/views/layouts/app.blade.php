@@ -8,6 +8,8 @@
     @endisset
 
     <main id="main" class="container">
+        <x-flash />
+
         {{ $slot }}
     </main>
 </x-layout.base>

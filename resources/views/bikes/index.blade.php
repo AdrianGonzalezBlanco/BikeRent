@@ -4,7 +4,7 @@
     @if ($bikes->isEmpty())
         <p>No hay bicicletas disponibles ahora mismo.</p>
     @else
-        <ul class="bike-grid">
+        <ul class="card-grid">
             @foreach ($bikes as $bike)
                 <li>
                     <x-bike-card :bike="$bike" />
