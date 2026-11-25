@@ -1,5 +1,5 @@
 <x-layout.base>
-    @include('layouts.navigation')
+    <x-navbar />
 
     @isset($header)
         <header class="page-header">
