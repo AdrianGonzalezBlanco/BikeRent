@@ -3,50 +3,41 @@
         @csrf
 
         <!-- Name -->
-        <div>
+        <div class="field">
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="" />
-            <x-input-error :messages="$errors->get('name')" class="" />
+            <x-text-input id="name" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('name')" />
         </div>
 
         <!-- Email Address -->
-        <div class="">
+        <div class="field">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="" />
-            <x-input-error :messages="$errors->get('email')" class="" />
+            <x-text-input id="email" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            <x-input-error :messages="$errors->get('email')" />
         </div>
 
         <!-- Password -->
-        <div class="">
+        <div class="field">
             <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class=""
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="" />
+            <x-text-input id="password" type="password" name="password" required autocomplete="new-password" />
+            <x-input-error :messages="$errors->get('password')" />
         </div>
 
         <!-- Confirm Password -->
-        <div class="">
+        <div class="field">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class=""
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="" />
+            <x-text-input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" />
+            <x-input-error :messages="$errors->get('password_confirmation')" />
         </div>
 
-        <div class="">
-            <a class="">
+        <div>
+            <x-button variant="text" :href="route('login')">
                 {{ __('Already registered?') }}
-            </a>
+            </x-button>
 
-            <x-primary-button class="">
+            <x-button type="submit">
                 {{ __('Register') }}
-            </x-primary-button>
+            </x-button>
         </div>
     </form>
 </x-guest-layout>

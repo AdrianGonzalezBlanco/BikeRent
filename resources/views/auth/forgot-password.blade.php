@@ -1,25 +1,25 @@
 <x-guest-layout>
-    <div class="">
+    <p>
         {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-    </div>
+    </p>
 
     <!-- Session Status -->
-    <x-auth-session-status class="" />
+    <x-auth-session-status :status="session('status')" />
 
     <form method="POST" action="{{ route('password.email') }}">
         @csrf
 
         <!-- Email Address -->
-        <div>
+        <div class="field">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="" />
+            <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus />
+            <x-input-error :messages="$errors->get('email')" />
         </div>
 
-        <div class="">
-            <x-primary-button>
+        <div>
+            <x-button type="submit">
                 {{ __('Email Password Reset Link') }}
-            </x-primary-button>
+            </x-button>
         </div>
     </form>
 </x-guest-layout>
