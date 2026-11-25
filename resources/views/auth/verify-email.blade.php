@@ -1,31 +1,23 @@
-<x-guest-layout>
-    <div class="">
-        {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
-    </div>
+<x-guest-layout title="Verificar correo">
+    <x-page-header
+        title="Verifica tu correo"
+        subtitle="Antes de empezar, pulsa el enlace que te hemos enviado por correo. Si no te ha llegado, te enviamos otro." />
 
-    @if (session('status') == 'verification-link-sent')
-        <div class="">
-            {{ __('A new verification link has been sent to the email address you provided during registration.') }}
+    @if (session('status') === 'verification-link-sent')
+        <div role="status" class="alert alert--success">
+            Te hemos enviado un nuevo enlace de verificación al correo con el que te registraste.
         </div>
     @endif
 
-    <div class="">
+    <div class="form__actions">
         <form method="POST" action="{{ route('verification.send') }}">
             @csrf
-
-            <div>
-                <x-primary-button>
-                    {{ __('Resend Verification Email') }}
-                </x-primary-button>
-            </div>
+            <x-button type="submit" class="btn--block">Reenviar correo de verificación</x-button>
         </form>
 
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-
-            <button type="submit" class="">
-                {{ __('Log Out') }}
-            </button>
+            <x-button type="submit" variant="text" class="btn--block">Cerrar sesión</x-button>
         </form>
     </div>
 </x-guest-layout>

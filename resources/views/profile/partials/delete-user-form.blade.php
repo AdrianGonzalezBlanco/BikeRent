@@ -1,55 +1,31 @@
-<section class="">
-    <header>
-        <h2 class="">
-            {{ __('Delete Account') }}
-        </h2>
+<header>
+    <h2 id="profile-delete-title" class="panel__title">Eliminar cuenta</h2>
+    <p class="panel__text">Se borrarán tu cuenta y todos tus datos de forma permanente.</p>
+</header>
 
-        <p class="">
-            {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
-        </p>
-    </header>
-
-    <x-danger-button
+<div>
+    <x-button
+        variant="danger"
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('Delete Account') }}</x-danger-button>
+    >Eliminar cuenta</x-button>
+</div>
 
-    <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
-        <form method="post" action="{{ route('profile.destroy') }}" class="">
-            @csrf
-            @method('delete')
+<x-modal name="confirm-user-deletion" labelledby="delete-modal-title" :show="$errors->userDeletion->isNotEmpty()" focusable>
+    <form method="POST" action="{{ route('profile.destroy') }}" class="form">
+        @csrf
+        @method('delete')
 
-            <h2 class="">
-                {{ __('Are you sure you want to delete your account?') }}
-            </h2>
+        <header>
+            <h2 id="delete-modal-title" class="panel__title">¿Eliminar tu cuenta?</h2>
+            <p class="panel__text">Esta acción no se puede deshacer. Introduce tu contraseña para confirmar.</p>
+        </header>
 
-            <p class="">
-                {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
-            </p>
+        <x-field name="password" id="delete_password" bag="userDeletion" label="Contraseña" type="password" autocomplete="current-password" />
 
-            <div class="">
-                <x-input-label for="password" value="{{ __('Password') }}" class="" />
-
-                <x-text-input
-                    id="password"
-                    name="password"
-                    type="password"
-                    class=""
-                    placeholder="{{ __('Password') }}"
-                />
-
-                <x-input-error :messages="$errors->userDeletion->get('password')" class="" />
-            </div>
-
-            <div class="">
-                <x-secondary-button x-on:click="$dispatch('close')">
-                    {{ __('Cancel') }}
-                </x-secondary-button>
-
-                <x-danger-button class="">
-                    {{ __('Delete Account') }}
-                </x-danger-button>
-            </div>
-        </form>
-    </x-modal>
-</section>
+        <div class="form__actions form__actions--row">
+            <x-button variant="outlined" x-on:click="$dispatch('close')">Cancelar</x-button>
+            <x-button type="submit" variant="danger">Eliminar cuenta</x-button>
+        </div>
+    </form>
+</x-modal>

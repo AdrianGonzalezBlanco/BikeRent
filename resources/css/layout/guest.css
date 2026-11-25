@@ -1,0 +1,43 @@
+/* Páginas de acceso (login, registro...): tarjeta centrada */
+.guest {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: var(--space-lg);
+  min-height: 100vh;
+  padding: var(--space-md);
+}
+
+.guest__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 1.375rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--md-sys-color-primary);
+}
+
+.guest__brand .icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.guest__card {
+  display: grid;
+  gap: var(--space-lg);
+  width: 100%;
+  max-width: 26rem;
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background: var(--md-sys-color-surface-container-low);
+}
+
+.guest__switch {
+  text-align: center;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+@media (min-width: 48rem) {
+  .guest__card { padding: var(--space-xl); }
+}

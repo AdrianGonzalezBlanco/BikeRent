@@ -1,43 +1,18 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+<x-guest-layout title="Crear cuenta">
+    <x-page-header title="Crear cuenta" subtitle="Regístrate para empezar a reservar" />
+
+    <form method="POST" action="{{ route('register') }}" class="form">
         @csrf
 
-        <!-- Name -->
-        <div class="field">
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" />
-        </div>
+        <x-field name="name" label="Nombre" required autofocus autocomplete="name" />
+        <x-field name="email" label="Correo electrónico" type="email" required autocomplete="username" />
+        <x-field name="password" label="Contraseña" type="password" required autocomplete="new-password" />
+        <x-field name="password_confirmation" label="Repetir contraseña" type="password" required autocomplete="new-password" />
 
-        <!-- Email Address -->
-        <div class="field">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" />
-        </div>
-
-        <!-- Password -->
-        <div class="field">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" type="password" name="password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="field">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-            <x-text-input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password_confirmation')" />
-        </div>
-
-        <div>
-            <x-button variant="text" :href="route('login')">
-                {{ __('Already registered?') }}
-            </x-button>
-
-            <x-button type="submit">
-                {{ __('Register') }}
-            </x-button>
+        <div class="form__actions">
+            <x-button type="submit" class="btn--block">Crear cuenta</x-button>
         </div>
     </form>
+
+    <p class="guest__switch">¿Ya tienes cuenta? <a href="{{ route('login') }}">Inicia sesión</a></p>
 </x-guest-layout>

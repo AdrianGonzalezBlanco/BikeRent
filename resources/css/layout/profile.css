@@ -1,0 +1,10 @@
+/* Perfil: secciones apiladas en una columna centrada */
+.profile {
+  display: grid;
+  gap: var(--space-md);
+  width: 100%;
+  max-width: 40rem;
+}
+
+.profile__section { gap: var(--space-md); }
+.profile__section > header { display: grid; gap: var(--space-xs); }

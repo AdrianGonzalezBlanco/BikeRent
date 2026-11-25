@@ -1,0 +1,27 @@
+/* Ventana modal (Alpine): fondo oscurecido y diálogo centrado */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: var(--space-md);
+  overflow-y: auto;
+}
+
+.modal__backdrop {
+  position: fixed;
+  inset: 0;
+  background: color-mix(in srgb, var(--md-sys-color-scrim) 50%, transparent);
+}
+
+.modal__dialog {
+  position: relative;
+  width: 100%;
+  max-width: 32rem;
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background: var(--md-sys-color-surface-container-high);
+}
+
+body.is-modal-open { overflow: hidden; }

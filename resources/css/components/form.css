@@ -1,0 +1,50 @@
+/* Formularios: campos apilados y fila de acciones */
+.form {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.form__actions {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.form__actions--row {
+  grid-auto-flow: column;
+  justify-content: end;
+}
+
+.form__saved { color: var(--md-sys-color-primary); }
+
+@media (min-width: 48rem) {
+  .form__actions:has(.form__saved) {
+    grid-auto-flow: column;
+    justify-content: start;
+    align-items: center;
+  }
+}
+
+/* Casilla con etiqueta */
+.check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  cursor: pointer;
+}
+
+.check input {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  accent-color: var(--md-sys-color-primary);
+}
+
+/* Botón con aspecto de enlace (dentro de textos) */
+.link-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}

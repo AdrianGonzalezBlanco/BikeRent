@@ -1,10 +1,11 @@
-@props(['name', 'label', 'type' => 'text', 'help' => null, 'value' => null])
+@props(['name', 'label', 'type' => 'text', 'help' => null, 'value' => null, 'bag' => 'default'])
 
 @php
     $id = $attributes->get('id', $name);
+    $messages = $errors->getBag($bag)->get($name);
     $describedBy = collect([
         $help ? "{$id}-help" : null,
-        $errors->has($name) ? "{$id}-error" : null,
+        $messages ? "{$id}-error" : null,
     ])->filter()->implode(' ');
 @endphp
 
@@ -15,8 +16,8 @@
         :id="$id"
         :name="$name"
         :type="$type"
-        :value="old($name, $value)"
-        :aria-invalid="$errors->has($name) ? 'true' : null"
+        :value="$type === 'password' ? null : old($name, $value)"
+        :aria-invalid="$messages ? 'true' : null"
         :aria-describedby="$describedBy ?: null"
         {{ $attributes->except('id') }}
     />
@@ -25,5 +26,5 @@
         <p id="{{ $id }}-help" class="field__help">{{ $help }}</p>
     @endif
 
-    <x-input-error :id="$id . '-error'" :messages="$errors->get($name)" />
+    <x-input-error :id="$id . '-error'" :messages="$messages" />
 </div>

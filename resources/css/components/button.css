@@ -58,3 +58,12 @@
   background: transparent;
   border-color: var(--md-sys-color-outline-variant);
 }
+
+.btn--danger {
+  color: var(--md-sys-color-on-error);
+  background: var(--md-sys-color-error);
+}
+
+.btn--danger:hover {
+  box-shadow: 0 1px 3px color-mix(in srgb, var(--md-sys-color-shadow) 30%, transparent);
+}
