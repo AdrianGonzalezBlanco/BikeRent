@@ -19,3 +19,6 @@
   height: 5rem;
   stroke-width: 1;
 }
+
+/* Imagen suelta (fuera de una tarjeta): lleva sus propias esquinas redondeadas */
+.bike-image--rounded { border-radius: var(--radius-lg); }

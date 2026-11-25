@@ -1,0 +1,31 @@
+/* Chips de filtro: enlaces que filtran una lista */
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0 var(--space-md);
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.chip:hover {
+  background: color-mix(in srgb, var(--md-sys-color-on-surface-variant) 8%, transparent);
+}
+
+.chip.is-active {
+  border-color: transparent;
+  color: var(--md-sys-color-on-secondary-container);
+  background: var(--md-sys-color-secondary-container);
+}

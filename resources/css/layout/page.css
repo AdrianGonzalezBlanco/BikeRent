@@ -31,6 +31,18 @@
 
 .card-grid--wide { --card-min: 22rem; }
 
+/* Imagen y datos: apilados en móvil, dos columnas en escritorio */
+.split {
+  display: grid;
+  gap: var(--space-lg);
+}
+
 @media (min-width: 48rem) {
   .container { padding: var(--space-xl) var(--space-2xl); }
+
+  .split {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: var(--space-xl);
+  }
 }

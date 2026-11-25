@@ -27,6 +27,7 @@
 }
 
 .summary__row dt { color: var(--md-sys-color-on-surface-variant); }
+.summary__row dd { text-align: right; }
 
 .summary__row--total {
   padding-top: var(--space-sm);

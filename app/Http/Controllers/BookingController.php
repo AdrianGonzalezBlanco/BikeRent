@@ -10,14 +10,24 @@ use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        // Filtros de la lista: "Activas" agrupa pendientes y activas
+        $filters = [
+            'active' => ['pending', 'active'],
+            'completed' => ['completed'],
+        ];
+
+        $requested = $request->string('status')->toString();
+        $filter = isset($filters[$requested]) ? $requested : null;
+
         $bookings = Booking::with('bike')
             ->where('user_id', Auth::id())
+            ->when($filter, fn ($query) => $query->whereIn('status', $filters[$filter]))
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('bookings.index', compact('bookings'));
+        return view('bookings.index', compact('bookings', 'filter'));
     }
 
     public function create(Bike $bike)
