@@ -1,0 +1,122 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--md-sys-color-surface);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 1.375rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--md-sys-color-primary);
+}
+
+/* Móvil: la navegación es una barra fija inferior */
+.navbar__nav {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 10;
+  display: flex;
+  padding: var(--space-sm);
+  background: var(--md-sys-color-surface-container);
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.navbar__link {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.navbar__icon {
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 2rem;
+  border-radius: var(--radius-full);
+}
+
+.navbar__link.is-active {
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface);
+}
+
+.navbar__link.is-active .navbar__icon {
+  color: var(--md-sys-color-on-secondary-container);
+  background: var(--md-sys-color-secondary-container);
+}
+
+/* Botón de tema */
+.navbar__theme {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin-left: auto;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--md-sys-color-on-surface-variant);
+  cursor: pointer;
+}
+
+.navbar__theme:hover { background: var(--md-sys-color-surface-container-high); }
+
+.icon--sun { display: none; }
+.dark .icon--sun { display: block; }
+.dark .icon--moon { display: none; }
+
+/* Deja sitio para que la barra inferior no tape el contenido */
+body { padding-bottom: 5rem; }
+
+/* Escritorio: la navegación pasa arriba */
+@media (min-width: 48rem) {
+  body { padding-bottom: 0; }
+
+  .navbar { padding: var(--space-sm) var(--space-2xl); }
+
+  .navbar__nav {
+    position: static;
+    margin-left: auto;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 0;
+    background: none;
+    border: 0;
+  }
+
+  .navbar__link {
+    flex: none;
+    flex-direction: row;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+  }
+
+  .navbar__icon { display: none; }
+
+  .navbar__link.is-active {
+    color: var(--md-sys-color-on-secondary-container);
+    background: var(--md-sys-color-secondary-container);
+  }
+
+  .navbar__link--account {
+    border: 1px solid var(--md-sys-color-outline);
+    color: var(--md-sys-color-primary);
+  }
+
+  .navbar__theme { margin-left: 0; }
+}
