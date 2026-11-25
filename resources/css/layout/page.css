@@ -1,0 +1,25 @@
+/* Contenedor principal de las páginas */
+.container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: var(--space-lg);
+  width: 100%;
+  max-width: 75rem;
+  margin-inline: auto;
+  padding: var(--space-md);
+}
+
+/* Cabecera de página: título y subtítulo */
+.page-header {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.page-header__subtitle {
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+@media (min-width: 48rem) {
+  .container { padding: var(--space-xl) var(--space-2xl); }
+}

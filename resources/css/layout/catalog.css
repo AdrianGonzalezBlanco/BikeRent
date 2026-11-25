@@ -1,0 +1,40 @@
+/* Rejilla del catálogo: 1 columna en móvil y más según el ancho disponible */
+.bike-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: var(--space-md);
+  padding: 0;
+  list-style: none;
+}
+
+/* Detalle de bicicleta: apilado en móvil, dos columnas en escritorio */
+.bike-detail {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.bike-detail__image { border-radius: var(--radius-lg); }
+
+.bike-detail__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.bike-detail__price { color: var(--md-sys-color-on-surface-variant); }
+
+.bike-detail__price strong {
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+  color: var(--md-sys-color-primary);
+}
+
+@media (min-width: 48rem) {
+  .bike-detail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: var(--space-xl);
+  }
+}
