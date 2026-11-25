@@ -26,7 +26,7 @@
         @endforeach
     </nav>
 
-    <button type="button" class="navbar__theme" data-theme-toggle aria-label="Modo oscuro" aria-pressed="false">
+    <button type="button" class="navbar__theme" data-theme-toggle aria-label="Cambiar a modo oscuro">
         <x-icon name="moon" class="icon icon--moon" />
         <x-icon name="sun" class="icon icon--sun" />
     </button>

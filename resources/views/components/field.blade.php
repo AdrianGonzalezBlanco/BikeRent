@@ -1,4 +1,4 @@
-@props(['name', 'label', 'type' => 'text', 'help' => null, 'value' => null, 'bag' => 'default'])
+@props(['name', 'label', 'type' => 'text', 'help' => null, 'value' => null, 'bag' => 'default', 'clientError' => false])
 
 @php
     $id = $attributes->get('id', $name);
@@ -24,6 +24,10 @@
 
     @if ($help)
         <p id="{{ $id }}-help" class="field__help">{{ $help }}</p>
+    @endif
+
+    @if ($clientError)
+        <p id="{{ $id }}-client-error" class="field__error" role="alert" hidden></p>
     @endif
 
     <x-input-error :id="$id . '-error'" :messages="$messages" />

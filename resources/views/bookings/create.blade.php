@@ -11,6 +11,7 @@
         method="POST"
         action="{{ route('bookings.store') }}"
         class="booking-form"
+        data-booking-form
         x-data="bookingEstimate({{ (float) $bike->price_per_hour }}, @js(old('start_time', '')), @js(old('end_time', '')))">
         @csrf
         <input type="hidden" name="bike_id" value="{{ $bike->id }}">
@@ -28,6 +29,7 @@
                 type="datetime-local"
                 help="Día y hora de recogida"
                 x-model="start"
+                :client-error="true"
                 required />
 
             <x-field
@@ -36,6 +38,7 @@
                 type="datetime-local"
                 help="Debe ser posterior al inicio"
                 x-model="end"
+                :client-error="true"
                 required />
         </div>
 

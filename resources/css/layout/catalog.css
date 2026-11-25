@@ -14,3 +14,8 @@
   font-weight: 600;
   color: var(--md-sys-color-primary);
 }
+
+/* Filtro del catálogo */
+.catalog-filter { max-width: 20rem; }
+
+.catalog-status { color: var(--md-sys-color-on-surface-variant); }
