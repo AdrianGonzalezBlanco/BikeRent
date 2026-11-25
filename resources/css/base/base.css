@@ -3,11 +3,17 @@
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   font-family: var(--font-family);
   font-size: 1rem;
   line-height: 1.5;
   color: var(--md-sys-color-on-background);
   background: var(--md-sys-color-background);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-bottom: 6rem; /* la barra inferior móvil no tapa el foco */
 }
 
 img, svg { display: block; max-width: 100%; }
@@ -36,3 +42,23 @@ h3 { font-size: 1.375rem; line-height: 1.75rem; font-weight: 600; } /* Title/Lar
   background: var(--md-sys-color-primary);
 }
 .skip-link:focus { top: var(--space-md); }
+
+/* Accesibilidad: respeta quien pide menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Modo de alto contraste del sistema: los botones, etiquetas y filtros mantienen borde */
+@media (forced-colors: active) {
+  .btn, .badge, .chip, .field__control { border: 1px solid ButtonText; }
+  .chip.is-active, .navbar__link.is-active { outline: 2px solid Highlight; }
+}
+
+@media (min-width: 48rem) {
+  html { scroll-padding-bottom: 0; }
+}

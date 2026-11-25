@@ -24,6 +24,7 @@
   z-index: 10;
   display: flex;
   padding: var(--space-sm);
+  padding-bottom: calc(var(--space-sm) + env(safe-area-inset-bottom));
   background: var(--md-sys-color-surface-container);
   border-top: 1px solid var(--md-sys-color-outline-variant);
 }
@@ -80,7 +81,7 @@
 .dark .icon--moon { display: none; }
 
 /* Deja sitio para que la barra inferior no tape el contenido */
-body { padding-bottom: 5rem; }
+body { padding-bottom: calc(5rem + env(safe-area-inset-bottom)); }
 
 /* Escritorio: la navegación pasa arriba */
 @media (min-width: 48rem) {
