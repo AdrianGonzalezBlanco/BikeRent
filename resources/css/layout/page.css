@@ -20,6 +20,17 @@
   color: var(--md-sys-color-on-surface-variant);
 }
 
+/* Rejilla de tarjetas: 1 columna en móvil y más según el ancho disponible */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--card-min, 18rem)), 1fr));
+  gap: var(--space-md);
+  padding: 0;
+  list-style: none;
+}
+
+.card-grid--wide { --card-min: 22rem; }
+
 @media (min-width: 48rem) {
   .container { padding: var(--space-xl) var(--space-2xl); }
 }

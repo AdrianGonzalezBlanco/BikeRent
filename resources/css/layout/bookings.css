@@ -1,0 +1,30 @@
+/* Formulario de reserva: una columna en móvil; en escritorio, campos a la izquierda y resumen a la derecha */
+.booking-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-md);
+}
+
+.booking-form__fields,
+.booking-form__actions {
+  display: grid;
+  gap: var(--space-md);
+}
+
+@media (min-width: 48rem) {
+  .booking-form {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    grid-template-areas:
+      "bike summary"
+      "fields summary"
+      "actions summary";
+    grid-template-rows: auto auto 1fr;
+    align-items: start;
+    gap: var(--space-lg) var(--space-xl);
+  }
+
+  .booking-form__bike { grid-area: bike; }
+  .booking-form__fields { grid-area: fields; }
+  .booking-form__summary { grid-area: summary; }
+  .booking-form__actions { grid-area: actions; }
+}
