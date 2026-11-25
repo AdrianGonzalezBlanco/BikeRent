@@ -12,7 +12,7 @@
         action="{{ route('bookings.store') }}"
         class="booking-form"
         data-booking-form
-        x-data="bookingEstimate({{ (float) $bike->price_per_hour }}, @js(old('start_time', '')), @js(old('end_time', '')))">
+        data-price-per-hour="{{ (float) $bike->price_per_hour }}">
         @csrf
         <input type="hidden" name="bike_id" value="{{ $bike->id }}">
 
@@ -28,7 +28,6 @@
                 label="Inicio"
                 type="datetime-local"
                 help="Día y hora de recogida"
-                x-model="start"
                 :client-error="true"
                 required />
 
@@ -37,7 +36,6 @@
                 label="Fin"
                 type="datetime-local"
                 help="Debe ser posterior al inicio"
-                x-model="end"
                 :client-error="true"
                 required />
         </div>
@@ -48,7 +46,7 @@
             <dl class="summary" aria-live="polite">
                 <div class="summary__row">
                     <dt>Duración</dt>
-                    <dd x-text="duration">—</dd>
+                    <dd data-estimate-duration>—</dd>
                 </div>
                 <div class="summary__row">
                     <dt>Precio por hora</dt>
@@ -56,7 +54,7 @@
                 </div>
                 <div class="summary__row summary__row--total">
                     <dt>Total estimado</dt>
-                    <dd x-text="total">—</dd>
+                    <dd data-estimate-total>—</dd>
                 </div>
             </dl>
         </aside>
