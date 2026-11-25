@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout :title="'Reservar '.$bike->model">
     <div>
         <x-button variant="text" :href="route('bikes.show', $bike)">
             <span aria-hidden="true">←</span> Volver al detalle

@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="Catálogo">
     <x-page-header title="Catálogo" subtitle="Elige tu bicicleta y reserva en pocos pasos" />
 
     @if ($bikes->isEmpty())

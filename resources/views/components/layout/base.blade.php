@@ -1,3 +1,5 @@
+@props(['title' => null])
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="light">
     <head>
@@ -5,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'BikeRent') }}</title>
+        <title>{{ $title ? $title.' · '.config('app.name', 'BikeRent') : config('app.name', 'BikeRent') }}</title>
 
         {{-- Applies the saved theme before first paint to avoid a flash --}}
         <script>

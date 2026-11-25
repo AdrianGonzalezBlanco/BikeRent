@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout :title="'Reserva de '.$booking->bike->model">
     <div>
         <x-button variant="text" :href="route('bookings.index')">
             <span aria-hidden="true">←</span> Volver a mis reservas
