@@ -6,7 +6,7 @@
     ];
 @endphp
 
-<x-app-layout>
+<x-app-layout title="Mis reservas">
     <x-page-header title="Mis reservas" subtitle="Consulta y gestiona tus alquileres" />
 
     @if ($filter || $bookings->isNotEmpty())

@@ -1,4 +1,4 @@
-<x-layout.base>
+<x-layout.base :title="$title">
     <x-navbar />
 
     @isset($header)

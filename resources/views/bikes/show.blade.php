@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout :title="$bike->model">
     <div>
         <x-button variant="text" :href="route('bikes.index')">
             <span aria-hidden="true">←</span> Volver al catálogo
